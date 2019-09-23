@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Vidly1.Models.Customer>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Customer Name
+            @*@Html.DisplayNameFor(model => model.Name)*@
+        </th>
+        <th>
+            Subscription
+            @* @Html.DisplayNameFor(model => model.IsSubscribedToNewsletter)*@
+        </th>
+        <th>
+            Discount Rate
+        </th>
+        <th>
+            Membership Type
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+
+        <td>
+            @Html.ActionLink(item.Name, "Details", "Customers", new { id = item.Id }, null)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSubscribedToNewsletter)
+        </td>
+        <td>@item.MembershipType.DiscountRate%</td>
+        <td>@item.MembershipType.MembershipTypes</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+    }
+
+</table>
